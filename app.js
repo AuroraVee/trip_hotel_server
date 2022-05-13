@@ -51,7 +51,7 @@ app.get('/hotel-room-detail', async function (req, res) {
 })
 
 //更新酒店的房间顺序
-app.post('/hotel-room-detail',async function (req, res) {
+app.post('/hotel-room-detail', function (req, res) {
   const { list: data } = req.body
   const filePath = path.join(__dirname, 'data', 'ctrip_hotels_base_rooms.xls')
   writeXlsx(filePath, data)
@@ -65,7 +65,7 @@ app.post('/hotel-room-detail',async function (req, res) {
       detail: element,
     })
   })
- await new OrderDb(__dirname).addChildren(list)
+  new OrderDb(__dirname).addChildren(list)
 
   res.send({ code: 200 })
 })
